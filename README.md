@@ -24,7 +24,7 @@ A Java library for 2D square celled raster data processing - capable of processi
 Please raise issues and submit pull requests in the usual way. Contributions will be acknowledged.
 
 ## Acknowledgements
-The development has been supported by numerous research grants and the University of Leeds. 
+The development has been supported by the University of Leeds. 
 
 ## LICENCE
 Please see the standard Apache 2.0 open source LICENCE.
