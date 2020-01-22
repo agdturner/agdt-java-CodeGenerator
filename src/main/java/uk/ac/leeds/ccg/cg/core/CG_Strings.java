@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.cg.core;
+package uk.ac.leeds.ccg.cg.core;
 
-import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
+import uk.ac.leeds.ccg.generic.core.Generic_Strings;
 
 /**
- *
- * @author geoagdt
+ * @author Andy Turner
+ * @version 1.0.0
  */
 public class CG_Strings extends Generic_Strings {
     

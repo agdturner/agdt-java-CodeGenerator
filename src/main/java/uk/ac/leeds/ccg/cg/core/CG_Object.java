@@ -13,11 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package uk.ac.leeds.ccg.andyt.cg.core;
+package uk.ac.leeds.ccg.cg.core;
 
 /**
- *
- * @author geoagdt
+ * @author Andy Turner
+ * @version 1.0.0
  */
 public class CG_Object {
     

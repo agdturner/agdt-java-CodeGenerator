@@ -13,13 +13,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package uk.ac.leeds.ccg.andyt.cg.core;
+package uk.ac.leeds.ccg.cg.core;
 
-import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
+import uk.ac.leeds.ccg.generic.core.Generic_Environment;
 
 /**
- *
- * @author geoagdt
+ * @author Andy Turner
+ * @version 1.0.0
  */
 public class CG_Environment  {
     

@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.cg.io;
+package uk.ac.leeds.ccg.cg.io;
 
-import java.io.File;
 import java.io.IOException;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
-import uk.ac.leeds.ccg.andyt.cg.core.CG_Strings;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import uk.ac.leeds.ccg.generic.io.Generic_Files;
+import uk.ac.leeds.ccg.cg.core.CG_Strings;
+import uk.ac.leeds.ccg.generic.io.Generic_Defaults;
 
 /**
- *
- * @author geoagdt
+ * @author Andy Turner
+ * @version 1.0.0
  */
 public class CG_Files extends Generic_Files {
     
@@ -30,14 +32,14 @@ public class CG_Files extends Generic_Files {
      * @param dir The directory.
      * @throws java.io.IOException If an IOException is encountered.
      */
-    public CG_Files(File dir) throws IOException {
-        super(dir);
+    public CG_Files(Path dir) throws IOException {
+        super(new Generic_Defaults(dir));
     }
     
     /**
-     * @return {@code new File(getDefaultGenericDir(), CG_Strings.s_CG)}.
+     * @return {@code Paths.get(getDefaultDir().toString(), CG_Strings.s_CG)}.
      */
-    public static File getDefaultDir() {
-        return new File(getDefaultGenericDir(), CG_Strings.s_CG);
+    public static Path getDefaultDir() {
+        return Paths.get(getDefaultDir().toString(), CG_Strings.s_CG);
     }
 }
