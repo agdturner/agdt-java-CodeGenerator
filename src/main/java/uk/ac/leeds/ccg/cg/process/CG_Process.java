@@ -133,7 +133,7 @@ public class CG_Process {
      * @param implementations
      * @param extendedClassName
      */
-    public void printClassDeclarationSerialVersionUID(PrintWriter pw,
+    public void printClassDeclaration(PrintWriter pw,
             String packageName, String className, String implementations,
             String extendedClassName) {
         pw.println();
@@ -145,10 +145,17 @@ public class CG_Process {
             pw.print(" implements " + implementations);
         }
         pw.println(" {");
-        /**
-         * This is not included for performance reasons. pw.println("private
-         * static final long serialVersionUID = " + serialVersionUID + ";");
-         */
+    }
+    
+    /**
+     * 
+     * @param pw
+     * @param serialVersionUID 
+     */
+    public void printSerialVersionUID(PrintWriter pw, long serialVersionUID) {
+        pw.println();
+        pw.println(getIndent(1) + "private static final long serialVersionUID"
+                + " = " + serialVersionUID + "L;");
     }
 
     /**
@@ -160,7 +167,7 @@ public class CG_Process {
      * @param implementations
      * @param extendedClassName
      */
-    public void printClassDeclarationSerialVersionUID(PrintWriter pw,
+    public void printClassDeclaration(PrintWriter pw,
             String packageName, String className, boolean isAbstract,
             String implementations, String extendedClassName) {
         pw.println();
@@ -176,14 +183,6 @@ public class CG_Process {
             pw.print(" implements " + implementations);
         }
         pw.println(" {");
-        pw.println();
-        /**
-         * This is not included for performance reasons.
-         */
-        /**
-         * pw.println("private static final long serialVersionUID = " +
-         * serialVersionUID + ";");
-         */
         //pw.flush();
     }
 
@@ -206,6 +205,35 @@ public class CG_Process {
             // print field declaration
             pw.println(getIndent(1) + "protected " + typeName + " " + field + ";");
         }
+    }
+
+    /**
+     * @param pw PrintWriter
+     * @param className Class name.
+     * @param name Name
+     * @param vnt Data_VariableNamesAndTypes
+     */
+    public void printConstructor(PrintWriter pw, String className, String name,
+            Data_VariableNamesAndTypes vnt) {
+        pw.println();
+        pw.println(getIndent(1) + "public " + className + "(" + name
+                + "_RecordID i, " + "String line) throws Exception {");
+        pw.println(getIndent(2) + "super(i);");
+        pw.println(getIndent(2) + "String[] s = line.split(\",\");");
+        for (int j = 0; j < vnt.order2FieldNames.size(); j++) {
+            pw.println(getIndent(2) + "init" + vnt.order2FieldNames.get(j)
+                    + "(s[" + j + "]);");
+        }
+        pw.println(getIndent(1) + "}");
+        printGetID(pw, name);
+    }
+
+    public void printGetID(PrintWriter pw, String name) {
+        pw.println();
+        pw.println(getIndent(1) + "@Override");
+        pw.println(getIndent(1) + "public " + name + "_RecordID getID() {");
+        pw.println(getIndent(2) + "return (" + name + "_RecordID) id;");
+        pw.println(getIndent(1) + "}");
     }
 
     /**
