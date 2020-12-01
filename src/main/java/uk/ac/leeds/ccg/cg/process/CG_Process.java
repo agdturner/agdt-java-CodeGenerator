@@ -71,9 +71,9 @@ public class CG_Process {
 
     /**
      *
-     * @param pw
-     * @param packageName
-     * @param imports
+     * @param pw The PrintWriter.
+     * @param packageName The name for the package.
+     * @param imports The list of imports.
      */
     public void writeHeaderPackageAndImports(PrintWriter pw,
             String packageName, ArrayList<String> imports) {
@@ -127,11 +127,11 @@ public class CG_Process {
 
     /**
      *
-     * @param pw
-     * @param packageName
-     * @param className
-     * @param implementations
-     * @param extendedClassName
+     * @param pw The PrintWriter.
+     * @param packageName The name for the package.
+     * @param className The class name.
+     * @param implementations The things implemented by the class.
+     * @param extendedClassName The name of the class to be extended.
      */
     public void printClassDeclaration(PrintWriter pw,
             String packageName, String className, String implementations,
@@ -146,11 +146,11 @@ public class CG_Process {
         }
         pw.println(" {");
     }
-    
+
     /**
-     * 
-     * @param pw
-     * @param serialVersionUID 
+     *
+     * @param pw The PrintWriter.
+     * @param serialVersionUID The serialVersionUID.
      */
     public void printSerialVersionUID(PrintWriter pw, long serialVersionUID) {
         pw.println();
@@ -160,12 +160,12 @@ public class CG_Process {
 
     /**
      *
-     * @param pw
-     * @param packageName
-     * @param className
+     * @param pw The PrintWriter.
+     * @param packageName The name for the package.
+     * @param className The class name.
      * @param isAbstract If true then the class is declared abstract.
-     * @param implementations
-     * @param extendedClassName
+     * @param implementations The things implemented by the class.
+     * @param extendedClassName The name of the class to be extended.
      */
     public void printClassDeclaration(PrintWriter pw,
             String packageName, String className, boolean isAbstract,
@@ -314,31 +314,18 @@ public class CG_Process {
     }
 
     /**
-     * Returns all the values common to s1, s2, s3, s4 and s5 and removes all
-     * these common fields from s1, s2, s3, s4 and s5.
+     * Returns all the values common to the sets in s.
      *
-     * @param s1
-     * @param s2
-     * @param s3 May be null.
-     * @param s4 May be null.
-     * @param s5 May be null.
-     * @return
-     * @Todo generalise
+     * @param s Array of sets. 
+     * @return Set of fields in common.
      */
-    public TreeSet<String> getFieldsInCommon(TreeSet<String> s1,
-            TreeSet<String> s2, TreeSet<String> s3, TreeSet<String> s4,
-            TreeSet<String> s5) {
+    public TreeSet<String> getFieldsInCommon(TreeSet<String>... s) {
         TreeSet<String> r = new TreeSet<>();
-        r.addAll(s1);
-        r.retainAll(s2);
-        if (s3 != null) {
-            r.retainAll(s3);
-        }
-        if (s4 != null) {
-            r.retainAll(s4);
-        }
-        if (s5 != null) {
-            r.retainAll(s5);
+        if (s.length > 0) {
+            r.addAll(s[0]);
+            for (int i = 1; i < s.length; i++) {
+                r.retainAll(s[i]);
+            }
         }
         return r;
     }
@@ -403,11 +390,11 @@ public class CG_Process {
      * result[0] are the fields in common with all.
      *
      * @param headers
-     * @return
+     * @return List of fields.
      */
     public ArrayList<String>[] getFieldsList(ArrayList<String> headers) {
-        ArrayList<String>[] r;
         int size = headers.size();
+        ArrayList<String>[] r;
         r = new ArrayList[size];
         Iterator<String> ite = headers.iterator();
         int i = 0;
@@ -419,9 +406,8 @@ public class CG_Process {
     }
 
     /**
-     *
-     * @param fields
-     * @return
+     * @param fields as a String[]
+     * @return fields as a TreeSet
      */
     public TreeSet<String> getFields(String[] fields) {
         TreeSet<String> r = new TreeSet<>();
@@ -431,8 +417,8 @@ public class CG_Process {
 
     /**
      *
-     * @param s
-     * @return
+     * @param s A String with fields separated by tabs.
+     * @return List of fields.
      */
     public ArrayList<String> getFieldsList(String s) {
         ArrayList<String> r = new ArrayList<>();
