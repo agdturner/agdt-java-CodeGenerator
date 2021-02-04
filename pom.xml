@@ -5,7 +5,10 @@
 
     <groupId>io.github.agdturner</groupId>
     <artifactId>agdt-java-CodeGenerator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1</version>
+    <!--
+    <version>0.1-SNAPSHOT</version>
+    -->
     <packaging>jar</packaging>
 
     <name>agdt-java-CodeGenerator</name>
@@ -41,8 +44,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <agdt-java-generic.version>1.7.1</agdt-java-generic.version>
-        <agdt-java-data.version>1.0-SNAPSHOT</agdt-java-data.version>
+        <agdt-java-generic.version>1.8</agdt-java-generic.version>
+        <agdt-java-data.version>0.2</agdt-java-data.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.version>3.0.1</maven.version>
@@ -89,12 +92,6 @@
                     <artifactId>selenium-remote-driver</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-            <version>4.11</version>
         </dependency>
     </dependencies>
     
@@ -229,5 +226,9 @@
             <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
         -->
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
 </project>
